@@ -3,7 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "seed-user": "node ./bin/seed-user",
+    "seed-venue": "node ./bin/seed-venue"
   },
   "dependencies": {
     "body-parser": "~1.18.2",
