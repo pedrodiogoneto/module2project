@@ -1,14 +1,18 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const ObjectId = Schema.Types.ObjectId;
 
 const VenueSchema = Schema({
   name: String,
-  // owner_id: String,
   archived: Boolean,
-  bookingRequests: {
+  requests: [{
     name: String,
     contact: String,
-    Description: String
+    description: String
+  }],
+  owner: {
+    type: ObjectId,
+    ref: 'User'
   }
 });
 

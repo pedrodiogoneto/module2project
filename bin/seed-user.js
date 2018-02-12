@@ -3,22 +3,22 @@ mongoose.connect('mongodb://localhost/module2project');
 
 const User = require('../models/user');
 
-const users = [
+const p1234encrypted = '1234';
+
+let users = [
   {
     username: 'Pedro',
-    password: '1234'
+    password: p1234encrypted
   },
   {
     username: 'James',
-    password: '1234'
+    password: p1234encrypted
   }
 ];
 
-User.create(users, (err, savedUsers) => {
-  if (err) { throw err; }
-
-  savedUsers.forEach(theuser => {
-    console.log(`${theuser.name} - ${theuser._id}`);
+User.remove()
+  .then(() => User.create(users))
+  .then(users => {
+    console.log(`created ${users.length} users`);
+    mongoose.disconnect();
   });
-  mongoose.disconnect();
-});

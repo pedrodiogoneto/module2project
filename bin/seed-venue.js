@@ -2,35 +2,35 @@ const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/module2project');
 
 const Venue = require('../models/venue');
+const User = require('../models/user');
 
 const venues = [
   {
-    name: 'Sonora',
-    // owner_id: String,
+    name: 'pedro',
     archived: false,
-    bookingRequests: {
-      name: null,
-      contact: null,
-      Description: null
-    }
-  },
-  {
-    name: 'Razzmataz',
-    // owner_id: String,
-    archived: false,
-    bookingRequests: {
-      name: 'pedro',
-      contact: '+351918545232',
-      Description: 'my band is fucking great, i want to play'
-    }
+    requests: [{
+      name: 'andre',
+      contact: '91876234895',
+      description: 'were a band'
+    }],
+    username: 'Pedro'
   }
 ];
 
-Venue.create(venues, (err, savedVenues) => {
-  if (err) { throw err; }
-
-  savedVenues.forEach(thevenue => {
-    console.log(`${thevenue.name} - ${thevenue._id}`);
-  });
-  mongoose.disconnect();
+let promises = venues.map(venue => {
+  return User.findOne({username: venue.username})
+    .then(user => {
+      if (!user) {
+        throw new Error(`User "${venue.owner}" was not found!`);
+      }
+      venue.owner = user._id;
+    });
 });
+
+Promise.all(promises)
+  .then(() => Venue.remove())
+  .then(() => Venue.create(venues))
+  .then(venues => {
+    console.log(`created ${venues.length} venues`);
+    mongoose.disconnect();
+  });
