@@ -1,9 +1,12 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 mongoose.connect('mongodb://localhost/module2project');
 
 const User = require('../models/user');
 
-const p1234encrypted = '1234';
+const saltRounds = 10;
+const salt = bcrypt.genSaltSync(saltRounds);
+const p1234encrypted = bcrypt.hashSync('1234', salt);
 
 let users = [
   {
