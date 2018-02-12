@@ -29,8 +29,7 @@ router.post('/signup', (req, res, next) => {
 
   // validate empty form
   if (username === '' || password === '') {
-    console.log('Indicate a username and a password to sign up');
-    return res.render('auth/signup');
+    return res.render('auth/signup', {message: "Indicate a username and password"});
   }
 
   // check if user with this username already exists
@@ -77,9 +76,13 @@ router.post('/login', (req, res, next) => {
   var username = req.body.username;
   var password = req.body.password;
 
+  //validate
   if (username === '' || password === '') {
-    console.log('Indicate a username and a password to login');
-    return res.render('auth/login');
+    const data = {
+      title: 'Login',
+      message: 'Try again'
+    };
+    return res.render('auth/login', data);
   }
 
   User.findOne({ 'username': username }, (err, user) => {
@@ -88,8 +91,11 @@ router.post('/login', (req, res, next) => {
     }
 
     if (!user) {
-      console.log('not a user!!!');
-      return res.render('auth/login');
+      const data = {
+        title: 'Login',
+        message: 'Please enter a valid username or password'
+      };
+    return res.render('auth/login', data);  
     }
 
     if (bcrypt.compareSync(password, user.password)) {
