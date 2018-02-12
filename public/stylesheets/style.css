@@ -6,3 +6,7 @@ body {
 a {
   color: #00B7FF;
 }
+
+.venues-list {
+  list-style-type: none;
+}

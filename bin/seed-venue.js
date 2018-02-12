@@ -6,12 +6,22 @@ const User = require('../models/user');
 
 const venues = [
   {
-    name: 'pedro',
+    name: 'Razzmatazz',
     archived: false,
     requests: [{
       name: 'andre',
       contact: '91876234895',
       description: 'were a band'
+    }],
+    username: 'Pedro'
+  },
+  {
+    name: 'apollo',
+    archived: true,
+    requests: [{
+      name: 'joao',
+      contact: '91876234895',
+      description: 'were a folcloric groupº'
     }],
     username: 'Pedro'
   }

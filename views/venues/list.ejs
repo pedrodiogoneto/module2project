@@ -1,14 +1,14 @@
 <h2><%= title %></h2>
 
 <p class="">
-  <a href="/venues/add-new"> <button>Create new</button></a>
+  <a href="/venue/add-new"> <button>Create new</button></a>
 </p>
 
-<ul class=""></ul>
+<ul>
   <% venues.forEach( (theVenue) => { %>
-    <li>
+    <li class="venues-list">
       <p class="item">
-        <a class="name" href="/venues/<%= theVenue._id %>"><%= theVenue.name %></a>
+        <a class="name" href="/venue/<%= theVenue._id %>"><%= theVenue.name %></a>
         <span class="owner"><%= theVenue.owner %></span>
       </p>
     </li>
