@@ -29,13 +29,21 @@ router.post('/signup', (req, res, next) => {
 
   // validate empty form
   if (username === '' || password === '') {
-    return res.render('auth/signup', {message: "Indicate a username and password"});
+    return res.render('auth/signup', {message: 'Indicate a username and password'});
   }
 
   // check if user with this username already exists
   User.findOne({ 'username': username }, (err, user) => {
     if (err) {
       return next(err);
+    }
+
+    if (user) {
+      const data = {
+        title: 'Signup',
+        message: 'The username "' + username + '" is taken'
+      };
+      return res.render('auth/signup', data);
     }
 
     const salt = bcrypt.genSaltSync(bcryptSalt);
@@ -76,7 +84,7 @@ router.post('/login', (req, res, next) => {
   var username = req.body.username;
   var password = req.body.password;
 
-  //validate
+  // validate
   if (username === '' || password === '') {
     const data = {
       title: 'Login',
@@ -95,14 +103,18 @@ router.post('/login', (req, res, next) => {
         title: 'Login',
         message: 'Please enter a valid username or password'
       };
-    return res.render('auth/login', data);  
+      return res.render('auth/login', data);
     }
 
     if (bcrypt.compareSync(password, user.password)) {
       req.session.currentUser = user;
       res.redirect('/');
     } else {
-      res.render('/');
+      const data = {
+        title: 'Login',
+        message: 'Username or password are incorrect'
+      };
+      res.render('auth/login', data);
     }
   });
 });
