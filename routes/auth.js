@@ -27,6 +27,11 @@ router.post('/signup', (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
 
+  if (username === '' || password === '') {
+    console.log('Indicate a username and a password to sign up');
+    return res.render('auth/signup');
+  }
+
   // check if user with this username already exists @@to do -validate
   User.findOne({ 'username': username }, (err, user) => {
     if (err) {
@@ -72,6 +77,11 @@ router.post('/login', (req, res, next) => {
   }
   var username = req.body.username;
   var password = req.body.password;
+
+  if (username === '' || password === '') {
+    console.log('Indicate a username and a password to login');
+    return res.render('auth/login');
+  }
 
   User.findOne({ 'username': username }, (err, user) => {
     if (err) {
