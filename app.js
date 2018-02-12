@@ -11,6 +11,7 @@ const expressLayouts = require('express-ejs-layouts');
 
 const index = require('./routes/index');
 const auth = require('./routes/auth');
+const venue = require('./routes/venues');
 
 const app = express();
 
@@ -56,6 +57,7 @@ app.use((req, res, next) => {
 
 app.use('/', index);
 app.use('/auth', auth);
+app.use('/venue', venue);
 
 // -- 404 and error handler
 
