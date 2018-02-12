@@ -27,12 +27,13 @@ router.post('/signup', (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
 
+  // validate empty form
   if (username === '' || password === '') {
     console.log('Indicate a username and a password to sign up');
     return res.render('auth/signup');
   }
 
-  // check if user with this username already exists @@to do -validate
+  // check if user with this username already exists
   User.findOne({ 'username': username }, (err, user) => {
     if (err) {
       return next(err);
@@ -57,7 +58,6 @@ router.post('/signup', (req, res, next) => {
 });
 
 /* render the login form */
-
 router.get('/login', (req, res, next) => {
   if (req.session.currentUser) {
     return res.redirect('/');
@@ -70,7 +70,6 @@ router.get('/login', (req, res, next) => {
 });
 
 /* handle the POST from the login form */
-
 router.post('/login', (req, res, next) => {
   if (req.session.currentUser) {
     return res.redirect('/');
@@ -86,6 +85,11 @@ router.post('/login', (req, res, next) => {
   User.findOne({ 'username': username }, (err, user) => {
     if (err) {
       return next(err);
+    }
+
+    if (!user) {
+      console.log('not a user!!!');
+      return res.render('auth/login');
     }
 
     if (bcrypt.compareSync(password, user.password)) {
