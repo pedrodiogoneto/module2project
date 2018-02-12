@@ -32,16 +32,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', index);
-app.use('/auth', auth);
-
-//session
+// session
 app.use(session({
   store: new MongoStore({
     mongooseConnection: mongoose.connection,
     ttl: 24 * 60 * 60 // 1 day
   }),
-  secret: 'foobar',
+  secret: 'project',
   resave: true,
   saveUninitialized: true,
   cookie: {
@@ -49,10 +46,13 @@ app.use(session({
   }
 }));
 
-app.use(function (req, res, next) {
+app.use((req, res, next) => {
   app.locals.user = req.session.currentUser;
   next();
 });
+
+app.use('/', index);
+app.use('/auth', auth);
 
 // -- 404 and error handler
 
