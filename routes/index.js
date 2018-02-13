@@ -6,5 +6,4 @@ router.get('/', (req, res, next) => {
   res.render('index', { title: 'Venue List' });
 });
 
-
-module.exports = router;
+module.exports = router; 
