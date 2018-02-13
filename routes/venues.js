@@ -57,28 +57,30 @@ router.get('/:id', (req, res, next) => {
     if (err) {
       return next(err);
     }
-    if (!venue) {
-      res.status(404);
-      const data = {
-        title: '404 Not Found'
-      };
-      return res.render('not-found', data);
-    }
+    // if (!venue) {
+    //   res.status(404);
+    //   const data = {
+    //     title: '404 Not Found'
+    //   };
+    //   return res.render('not-found', data);
+    // }
     const data = {
-      title: venue.name,
-      venue
+      name: venue.name,
+      owner: venue.owner,
+      id: venue._id
     };
     res.render('venues/venue-details', data);
   });
 });
 
 /* handle the POST from the request booking form */
-router.post('/new-booking', (req, res, next) => {
-  const id = req.params.id;
+router.post('/:id', (req, res, next) => {
+  const idVenue = req.params.id;
   if (!req.session.currentUser) {
     return res.redirect('/auth/login');
   }
-  Venues.findById(id, (err, venue) => {
+
+  Venues.findById(idVenue, (err, venue) => {
     if (err) {
       return next(err);
     }
@@ -89,13 +91,26 @@ router.post('/new-booking', (req, res, next) => {
       };
       return res.render('not-found', data);
     }
+    const newRequest = {
+      name: req.body.name,
+      contact: req.body.contact,
+      description: req.body.description
+    };
+
+    // validate empty request form
+    if (newRequest.name === '' || newRequest.contact === '' || newRequest.description === '') {
+      // const message = {
+      //   message: 'Please fill all the fields!'
+      // };
+      return res.redirect('/venues/' + idVenue);
+    }
+
+    venue.requests.push(newRequest);
     venue.save((err) => {
       if (err) {
         return next(err);
       }
-      venue.request.name = req.body.name;
-      venue.request.contact = req.body.contact;
-      venue.request.description = req.body.description;
+
       res.redirect('/venues/list');
     });
   });

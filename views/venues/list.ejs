@@ -9,7 +9,7 @@
     <% venues.forEach( (theVenue) => { %>
       <li class="venues-list">
         <p class="item">
-          <a class="name" href="/venue/<%= theVenue._id %>"><%= theVenue.name %></a>
+          <a class="name" href="/venues/<%= theVenue._id %>"><%= theVenue.name %></a>
           <span class="owner"><%= theVenue.owner %></span>
         </p>
       </li>

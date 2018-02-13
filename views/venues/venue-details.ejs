@@ -1,17 +1,16 @@
-
-<% if (Object.keys(venues).length !== 0) { %>
-<li class="venues-list">
-    <p class="item">
-      <a class="name" href="/venue/<%= theVenue._id %>"><%= theVenue.name %></a>
-      <span class="owner"><%= theVenue.owner %></span>
-    </p>
-  </li>
-<% } else { %>
-<p>Sorry, there are no venues to show</p>
-<% }%>
+<h2>Venue Details</h2>
+<ul>
+    <li class="venue-details">
+        <p class="item">
+            <%= name %>
+            <%= owner %>
+        </p>
+    </li>
 </ul>
 
-<form action= "/venues/new-booking" method="POST" >
+<h2>Request Booking</h2>
+
+<form action= "/venues/<%= id %>" method="POST" >
     <div class="field">
       <label for="name"> Name </label>
       <input type="text" name="name" id="name">
@@ -26,4 +25,7 @@
     <div class="field control">
         <button class="btn submit">Submit</button>
     </div>
+    <% if (typeof message !== 'undefined') { %>
+        <p class="error"><%= message %></p>
+      <% } %>
 </form>
