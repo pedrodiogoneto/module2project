@@ -1,0 +1,29 @@
+
+<% if (Object.keys(venues).length !== 0) { %>
+<li class="venues-list">
+    <p class="item">
+      <a class="name" href="/venue/<%= theVenue._id %>"><%= theVenue.name %></a>
+      <span class="owner"><%= theVenue.owner %></span>
+    </p>
+  </li>
+<% } else { %>
+<p>Sorry, there are no venues to show</p>
+<% }%>
+</ul>
+
+<form action= "/venues/new-booking" method="POST" >
+    <div class="field">
+      <label for="name"> Name </label>
+      <input type="text" name="name" id="name">
+
+      <label for="contact"> Contact </label>
+      <input type="text" name="contact" id="contact">
+
+      <label for="description"> Description </label>
+      <input type="text" name="description" id="description">
+    </div>
+
+    <div class="field control">
+        <button class="btn submit">Submit</button>
+    </div>
+</form>
