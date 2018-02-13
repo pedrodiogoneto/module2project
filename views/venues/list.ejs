@@ -5,12 +5,16 @@
 </p>
 
 <ul>
-  <% venues.forEach( (theVenue) => { %>
-    <li class="venues-list">
-      <p class="item">
-        <a class="name" href="/venue/<%= theVenue._id %>"><%= theVenue.name %></a>
-        <span class="owner"><%= theVenue.owner %></span>
-      </p>
-    </li>
-  <% }); %>
+  <% if (Object.keys(venues).length !== 0) { %>
+    <% venues.forEach( (theVenue) => { %>
+      <li class="venues-list">
+        <p class="item">
+          <a class="name" href="/venue/<%= theVenue._id %>"><%= theVenue.name %></a>
+          <span class="owner"><%= theVenue.owner %></span>
+        </p>
+      </li>
+    <% }); %>
+  <% } else { %>
+    <p>Please try again later, there are no available venues</p>
+  <% }%>
 </ul>
