@@ -16,4 +16,38 @@ router.get('/list', (req, res, next) => {
   });
 });
 
+/* render the create form */
+router.get('/new-venue', (req, res, next) => {
+  if (!req.session.currentUser) {
+    return res.redirect('/auth/login', {message: 'Please Login or Signup to Add a new Venue'});
+  }
+  res.render('venues/new-venue', {
+    title: 'Add a new Venue'
+  });
+});
+
+/* handle the POST from the create form */
+router.post('/list', (req, res, next) => {
+  if (!req.session.currentUser) {
+    return res.redirect('/auth/login', {message: 'Please Login or Signup to Add a new Venue'});
+  }
+  const theVenue = new Venues({
+    name: req.body.name,
+    // archived: req.body.archived,
+    // requests: [{
+    //   name: null,
+    //   contact: null,
+    //   description: null
+    // }],
+    owner: req.session.name
+  });
+
+  theVenue.save((err) => {
+    if (err) {
+      return next(err);
+    }
+    res.redirect('/list');
+  });
+});
+
 module.exports = router;
