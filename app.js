@@ -57,7 +57,7 @@ app.use((req, res, next) => {
 
 app.use('/', index);
 app.use('/auth', auth);
-app.use('/venue', venue);
+app.use('/venues', venue);
 
 // -- 404 and error handler
 
