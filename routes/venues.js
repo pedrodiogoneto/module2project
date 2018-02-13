@@ -33,20 +33,20 @@ router.post('/list', (req, res, next) => {
   }
   const theVenue = new Venues({
     name: req.body.name,
-    // archived: req.body.archived,
-    // requests: [{
-    //   name: null,
-    //   contact: null,
-    //   description: null
-    // }],
-    owner: req.session.name
+    archived: false,
+    requests: [{
+      name: null,
+      contact: null,
+      description: null
+    }],
+    owner: req.session.currentUser.username
   });
 
   theVenue.save((err) => {
     if (err) {
       return next(err);
     }
-    res.redirect('/list');
+    res.redirect('/venues/list');
   });
 });
 

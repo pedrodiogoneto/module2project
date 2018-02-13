@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const ObjectId = Schema.Types.ObjectId;
+// const ObjectId = Schema.Types.ObjectId;
+const Stringa = Schema.Types.String;
 
 const VenueSchema = Schema({
   name: String,
@@ -11,7 +12,7 @@ const VenueSchema = Schema({
     description: String
   }],
   owner: {
-    type: ObjectId,
+    type: Stringa,
     ref: 'User'
   }
 });

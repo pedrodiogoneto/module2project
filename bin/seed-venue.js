@@ -33,7 +33,7 @@ let promises = venues.map(venue => {
       if (!user) {
         throw new Error(`User "${venue.owner}" was not found!`);
       }
-      venue.owner = user._id;
+      venue.owner = user.username;
     });
 });
 
