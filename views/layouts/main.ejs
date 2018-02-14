@@ -9,20 +9,22 @@
   <body>
     <header id="site-header">
       <div class="container">
-        <h1>Module2Project</h1>
+        <!--<h2>Module2Project</h2>-->
         <% if (user) { %>
             <!-- Logged in as <%= user.username %> -->
             <form method="post" action="/auth/logout">
-              <button>Logout</button>
+              <button class = 'button-general'>Logout</button>
             </form>
-            <a href="/venues/"><button>Venues List</button></a>
+            <a href="/venues/" class = 'button-general'><button>Venues List</button></a>
             <a href="/venues/my-venues"><button>My Venues</button></a>
           <% } else { %>
-          <a href="/auth/signup">Signup</a>
-          <a href="/auth/login">Login</a>
+          <a href="/auth/signup" class = "signup-login">Signup</a>
+          <a href="/auth/login" class = "signup-login">Login</a>
         <% } %>
       </div>
     </header>
+
+    
     <div id="site-main" class="container">
       <%- body %>
     </div>
