@@ -1,8 +1,10 @@
 <h2><%= title %></h2>
 
-<p class="">
-  <a href="/venues/new-venue"><button>Create new</button></a>
-</p>
+<% if (user) { %>
+  <p class="">
+    <a href="/venues/new-venue"><button>Create new</button></a>
+  </p>
+<% } %>
 
 <ul>
   <% if (Object.keys(venues).length !== 0) { %>

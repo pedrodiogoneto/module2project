@@ -4,7 +4,7 @@ const router = express.Router();
 const Venues = require('../models/venue');
 
 // render venues list
-router.get('/list', (req, res, next) => {
+router.get('/', (req, res, next) => {
   Venues.find({'archived': false}, (err, venues) => {
     if (err) {
       return next(err);
@@ -27,7 +27,7 @@ router.get('/new-venue', (req, res, next) => {
 });
 
 /* handle the POST from the create form */
-router.post('/list', (req, res, next) => {
+router.post('/', (req, res, next) => {
   if (!req.session.currentUser) {
     return res.redirect('/auth/login');
   }
@@ -46,7 +46,7 @@ router.post('/list', (req, res, next) => {
     if (err) {
       return next(err);
     }
-    res.redirect('/venues/list');
+    res.redirect('/venues/');
   });
 });
 
@@ -57,13 +57,13 @@ router.get('/:id', (req, res, next) => {
     if (err) {
       return next(err);
     }
-    // if (!venue) {
-    //   res.status(404);
-    //   const data = {
-    //     title: '404 Not Found'
-    //   };
-    //   return res.render('not-found', data);
-    // }
+    if (!venue) {
+      res.status(404);
+      const data = {
+        title: '404 Not Found'
+      };
+      return res.render('not-found', data);
+    }
     const data = {
       name: venue.name,
       owner: venue.owner,
@@ -76,9 +76,9 @@ router.get('/:id', (req, res, next) => {
 /* handle the POST from the request booking form */
 router.post('/:id', (req, res, next) => {
   const idVenue = req.params.id;
-  if (!req.session.currentUser) {
-    return res.redirect('/auth/login');
-  }
+  // if (!req.session.currentUser) {
+  //   return res.redirect('/auth/login');
+  // }
 
   Venues.findById(idVenue, (err, venue) => {
     if (err) {
@@ -111,7 +111,7 @@ router.post('/:id', (req, res, next) => {
         return next(err);
       }
 
-      res.redirect('/venues/list');
+      res.redirect('/venues');
     });
   });
 });
