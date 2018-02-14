@@ -4,16 +4,9 @@
             <% if (Object.keys(venue).length !== 0) { %>
                 <% venue.forEach( (venue) => { %>
         <li class="venue-details">
-            <p class="item">
-                <%= venue.name %>
-            </p>
-
-            <form action="">
-                <div class="field control">
-                    <button class="btn edit">edit</button>
-                </div>
-            </form>
-
+            
+            <a class="name" href="/venues/<%= venue._id %>"><%= venue.name %></a>
+            
             <form action="">
                 <div class="field control">
                     <button class="btn delete">delete</button>
