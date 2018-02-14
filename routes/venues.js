@@ -50,6 +50,23 @@ router.post('/', (req, res, next) => {
   });
 });
 
+// Render the me-venues page
+router.get('/my-venues', (req, res, next) => {
+  Venues.find({'owner': req.session.currentUser.username}, (err, venue) => {
+    if (err) {
+      return next(err);
+    }
+    const data = {
+      name: venue.name,
+      owner: venue.owner,
+      id: venue._id,
+      user: req.session.currentUser.username,
+      venue
+    };
+    res.render('venues/my-venues', data);
+  });
+});
+
 /* render the detail page */
 router.get('/:id', (req, res, next) => {
   const id = req.params.id;
@@ -115,4 +132,5 @@ router.post('/:id', (req, res, next) => {
     });
   });
 });
+
 module.exports = router;
