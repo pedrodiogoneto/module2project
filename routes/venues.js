@@ -50,7 +50,7 @@ router.post('/', (req, res, next) => {
   });
 });
 
-// Render the me-venues page
+// Render the my-venues page
 router.get('/my-venues', (req, res, next) => {
   Venues.find({'owner': req.session.currentUser.username}, (err, venue) => {
     if (err) {
@@ -93,6 +93,8 @@ router.get('/:id', (req, res, next) => {
 /* handle the POST from the request booking form */
 router.post('/:id', (req, res, next) => {
   const idVenue = req.params.id;
+
+  // validation only relevant if in the future we add band users aswell
   // if (!req.session.currentUser) {
   //   return res.redirect('/auth/login');
   // }
