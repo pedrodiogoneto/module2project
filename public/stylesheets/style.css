@@ -1,3 +1,5 @@
+/* MAIN */
+
 html {
   box-sizing: border-box; 
 }
@@ -23,6 +25,7 @@ h1 {
 
 #site-main {
     display: flex;
+    flex-flow: row wrap;
     height: 75vh;
 }
 
@@ -31,18 +34,6 @@ h1 {
   padding: 0;
   margin: 2vw;
 }
-
-#body {   
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  width: 100vw;
-  padding: 0;
-  margin: 2vw;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
-
-body #site-footer
 
 .field {
   margin-bottom: 20px;
@@ -61,11 +52,17 @@ body #site-footer
   border: 1px solid black;
 }
 
-
 a {
   color: #00B7FF;
 }
 
 .venues-list {
   list-style-type: none;
+}
+
+/* LOGIN & SIGNUP */
+
+h2 {
+    font-size: 2.5em;
+    margin: 0 15vw 0 0; 
 }
