@@ -14,7 +14,10 @@ const VenueSchema = Schema({
   owner: {
     type: StringSchema,
     ref: 'User'
-  }
+  },
+  about: String,
+  location: String,
+  size: String
 });
 
 const Venue = mongoose.model('Venue', VenueSchema);

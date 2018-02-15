@@ -39,7 +39,10 @@ router.post('/', (req, res, next) => {
       contact: null,
       description: null
     }],
-    owner: req.session.currentUser.username
+    owner: req.session.currentUser.username,
+    about: req.body.about,
+    location: req.body.location,
+    size: req.body.size
   });
 
   theVenue.save((err) => {
@@ -61,6 +64,9 @@ router.get('/my-venues', (req, res, next) => {
       owner: venue.owner,
       id: venue._id,
       user: req.session.currentUser.username,
+      about: venue.about,
+      location: venue.location,
+      size: venue.size,
       venue
     };
     res.render('venues/my-venues', data);
@@ -100,7 +106,10 @@ router.get('/:id', (req, res, next) => {
       name: venue.name,
       owner: venue.owner,
       user: req.session.currentUser.username,
-      id: venue._id
+      id: venue._id,
+      about: venue.about,
+      location: venue.location,
+      size: venue.size
     };
     res.render('venues/venue-details', data);
   });
@@ -127,7 +136,10 @@ router.get('/:id/edit-venue', (req, res, next) => {
       name: venue.name,
       owner: venue.owner,
       user: req.session.currentUser.username,
-      id: venue._id
+      id: venue._id,
+      about: venue.about,
+      location: venue.location,
+      size: venue.size
     };
     res.render('venues/edit-venue', data);
   });
@@ -152,7 +164,10 @@ router.post('/:id/edit-venue', (req, res, next) => {
     }
     const editVenue = {
       $set: {
-        name: req.body.name
+        name: req.body.name,
+        about: venue.about,
+        location: venue.location,
+        size: venue.size
       }
     };
 

@@ -4,6 +4,9 @@
         <p class="item">
             <%= name %> by owner
             <%= owner %>
+            <p><%= about %></p>
+            <p><%= location %></p> 
+            <p><%= size %></p>
         </p>
     </li>
 </ul>
@@ -27,7 +30,7 @@
     </div>
 
     <% if (owner === user) { %>
-          <a href="/venues/<%= id %>/edit-venue">Edit Venue</a>
+          <button><a href="/venues/<%= id %>/edit-venue">Edit Venue</a></button>
           
           <form action="/venues/<%= id %>/delete-venue" method="POST">
                 <button class="btn delete">delete</button>
