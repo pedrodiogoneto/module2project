@@ -35,9 +35,14 @@
       display: flex;
       align-content: flex-start;
       flex-flow: row wrap;
-      height: 75vh;
+      height: 105vh;
   }
-
+  
+  #site-footer {
+      display: flex;
+      align-content: flex-end;
+  }
+  
   .container {
     display: flex;
     padding: 0;
@@ -68,6 +73,7 @@
   .venues-list {
     list-style-type: none;
   }
+  
 
   /*content styling*/
 
@@ -81,18 +87,27 @@
   .interactive-list{
     display: flex;
     justify-content: flex-start;
-    flex-flow: column wrap;
+    flex-direction: column;
     height: 60vh;
-    width: 60vw;
+    width: 80vw;
   }
 
   .interactive-list ul {
     display: flex;
     padding: 0 0 0 0;
     flex-direction: column;
-    align-items: flex-start;
+    align-content:flex-start;
+  }
+
+  .interactive-list #create-venue-button {
+    align-items: flex-end;
+  }
+
+  .name{
+    font-size: 1.25em
   }
 }
+
 
 /* >1200PX SCREEN SIZE FORMATTING*/
 
@@ -187,5 +202,17 @@
     padding: 0 0 0 0;
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .venue-details{
+    display: flex;
+    font-size: 1.5em;
+    flex-direction: column;
+    align-content: space-around;
+    margin: 0.5vh 0 0.5vh 0;
+  }
+
+  .name{
+    font-size: 1.25em
   }
 }
