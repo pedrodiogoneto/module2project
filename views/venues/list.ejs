@@ -1,9 +1,8 @@
 <h2><%= title %></h2>
 
+<div class = "interactive-list">
 <% if (user) { %>
-  <p class="">
-    <a href="/venues/new-venue"><button>Create new</button></a>
-  </p>
+    <a href="/venues/new-venue"><button id = "create-venue-button">Create new</button></a>
 <% } %>
 
 <ul>
@@ -20,3 +19,4 @@
     <p>Please try again later, there are no available venues</p>
   <% }%>
 </ul>
+</div>
