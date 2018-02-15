@@ -36,11 +36,6 @@ router.post('/', (req, res, next) => {
   const theVenue = new Venues({
     name: req.body.name,
     archived: false,
-    requests: [{
-      name: null,
-      contact: null,
-      description: null
-    }],
     owner: req.session.currentUser._id,
     about: req.body.about,
     location: req.body.location,
@@ -60,19 +55,12 @@ router.get('/my-venues', (req, res, next) => {
   if (!req.session.currentUser) {
     return res.redirect('/auth/login');
   }
-  Venues.find({'owner': req.session.currentUser._id}, (err, venue) => {
+  Venues.find({'owner': req.session.currentUser._id}, (err, venues) => {
     if (err) {
       return next(err);
     }
     const data = {
-      name: venue.name,
-      owner: venue.owner,
-      id: venue._id,
-
-      about: venue.about,
-      location: venue.location,
-      size: venue.size,
-      venue
+      venues
     };
     res.render('venues/my-venues', data);
   });
@@ -160,9 +148,9 @@ router.post('/:id/edit-venue', (req, res, next) => {
     const editVenue = {
       $set: {
         name: req.body.name,
-        about: venue.about,
-        location: venue.location,
-        size: venue.size
+        about: req.body.about,
+        location: req.body.location,
+        size: req.body.size
       }
     };
 

@@ -11,7 +11,7 @@
     </li>
 </ul>
 
-<% if (venue.owner.username === user.username) { %>
+<% if (user && venue.owner.username === user.username) { %>
     
     <% if (venue.requests !== null) { %>
         <h2>Bands Requesting to book Your Place</h2>

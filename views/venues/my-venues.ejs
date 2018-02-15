@@ -3,8 +3,8 @@
 <a href="/venues/new-venue"><button id = "create-venue-button">Create new</button></a>
 
 <ul>
-    <% if (Object.keys(venue).length !== 0) { %>
-        <% venue.forEach( (venue) => { %>
+    <% if (Object.keys(venues).length !== 0) { %>
+        <% venues.forEach( (venue) => { %>
             <li class="venue-details">
                 <a class="name" href="/venues/<%= venue._id %>"><%= venue.name %></a>        
             </li>
