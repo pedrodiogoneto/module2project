@@ -1,4 +1,4 @@
-/* <768PX SCREEN SIZE FORMATTING*/
+/* >360PX SCREEN SIZE FORMATTING*/
 
 @media screen and (max-width: 768px) {
 
@@ -109,7 +109,7 @@
 }
 
 
-/* >1200PX SCREEN SIZE FORMATTING*/
+/* >1024PX SCREEN SIZE FORMATTING*/
 
 @media screen and (min-width: 1024px) {
 
