@@ -103,13 +103,8 @@ router.get('/:id', (req, res, next) => {
       return res.render('not-found', data);
     }
     const data = {
-      name: venue.name,
-      owner: venue.owner,
       user: req.session.currentUser.username,
-      id: venue._id,
-      about: venue.about,
-      location: venue.location,
-      size: venue.size
+      venue
     };
     res.render('venues/venue-details', data);
   });
