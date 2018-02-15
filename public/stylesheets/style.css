@@ -1,68 +1,191 @@
-/* MAIN */
+/* <768PX SCREEN SIZE FORMATTING*/
 
-html {
-  box-sizing: border-box; 
-}
+@media screen and (max-width: 768px) {
 
-#site-header {
-  display: flex;
-  height: 10vh;
-  flex-direction: row-reverse;
-}
+  /*main styling*/
+  html {
+    box-sizing: border-box; 
+  }
 
-h1 {
-  font-size: 2.5em;
-}
-
-.signup-login {
-  padding: 1vw;
-  font-size: 1.25em;
-}
-
-.button-general {
-  margin: 1vw;
-}
-
-#site-main {
+  #site-header {
     display: flex;
-    flex-flow: row wrap;
-    height: 75vh;
-}
+    height: 10vh;
+    flex-direction: row-reverse;
+  }
 
-.container {
-  display: flex;
-  padding: 0;
-  margin: 2vw;
-}
+  #site-header .container {
+    display: flex;
+    flex-direction: row-reverse;
+  }
 
-.field {
-  margin-bottom: 20px;
-}
-
-.field label {
-  display: block;
-  font-size: 16px;
-  padding-bottom: 10px;
-}
-
-.field input {
-  width: 100%;
-  padding: 5px 10px;
-  font-size: 16px;
-  border: 1px solid black;
-}
-
-a {
-  color: #00B7FF;
-}
-
-.venues-list {
-  list-style-type: none;
-}
-
-/* LOGIN & SIGNUP */
-
-h2 {
+  h1 {
     font-size: 2.5em;
-    margin: 0 15vw 0 0; 
+  }
+
+  .signup-login {
+    padding: 1vw;
+    font-size: 1.25em;
+  }
+
+  .button-general {
+    margin: 1vw;
+  }
+
+  #site-main {
+      display: flex;
+      align-content: flex-start;
+      flex-flow: row wrap;
+      height: 75vh;
+  }
+
+  .container {
+    display: flex;
+    padding: 0;
+    margin: 2vw;
+  }
+
+  .field {
+    margin-bottom: 20px;
+  }
+
+  .field label {
+    display: block;
+    font-size: 16px;
+    padding-bottom: 10px;
+  }
+
+  .field input {
+    width: 100%;
+    padding: 5px 10px;
+    font-size: 16px;
+    border: 1px solid black;
+  }
+
+  a {
+    color: #00B7FF;
+  }
+
+  .venues-list {
+    list-style-type: none;
+  }
+
+  /*content styling*/
+
+  h2 {
+      font-size: 2.5em;
+      height: 100px;
+      white-space: nowrap;
+      margin: 0 70vw 0 0; 
+  }
+
+  .interactive-list{
+    display: flex;
+    justify-content: flex-start;
+    flex-flow: column wrap;
+    height: 60vh;
+    width: 60vw;
+  }
+
+  .interactive-list ul {
+    display: flex;
+    padding: 0 0 0 0;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* >1200PX SCREEN SIZE FORMATTING*/
+
+@media screen and (min-width: 1024px) {
+
+  /* main styling*/
+  html {
+    box-sizing: border-box; 
+  }
+
+  #site-header {
+    display: flex;
+    height: 10vh;
+    flex-direction: row-reverse;
+  }
+
+  #site-header .container {
+    display: flex;
+    flex-direction: row-reverse;
+  }
+
+  h1 {
+    font-size: 2.5em;
+  }
+
+  .signup-login {
+    padding: 1vw;
+    font-size: 1.25em;
+  }
+
+  .button-general {
+    margin: 1vw;
+  }
+
+  #site-main {
+      display: flex;
+      flex-flow: row wrap;
+      align-content: flex-start;
+      height: 75vh;
+  }
+
+  .container {
+    display: flex;
+    padding: 0;
+    margin: 2vw;
+  }
+
+  .field {
+    margin-bottom: 20px;
+  }
+
+  .field label {
+    display: block;
+    font-size: 16px;
+    padding-bottom: 10px;
+  }
+
+  .field input {
+    width: 100%;
+    padding: 5px 10px;
+    font-size: 16px;
+    border: 1px solid black;
+  }
+
+  a {
+    color: #00B7FF;
+  }
+
+  .venues-list {
+    list-style-type: none;
+  } 
+
+  /*content styling*/
+
+  h2 {
+    display: flex;
+    white-space:nowrap;
+    height: 100px;
+    font-size: 2.5em;
+    margin-right: 100vw;
+  }
+
+
+  #new-venue-form .form-secondary-action {
+    display: flex;
+    align-items: flex-end;
+  }
+
+
+  .interactive-list ul {
+    display: flex;
+    padding: 0 0 0 0;
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
