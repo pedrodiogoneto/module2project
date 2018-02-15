@@ -1,20 +1,20 @@
 
-<form action= "/venues/<%= id %>/edit-venue" method="POST" >
+<form action= "/venues/<%= venue.id %>/edit-venue" method="POST" >
     <div class="field">
       <label for="name"> Name </label>
-      <input type="text" name="name" id="name">
+      <input type="text" name="name" id="name" value="<%= venue.name %>" />
     </div>
     <div class="field">
         <label for="about"> About </label>
-        <input type="text" name="about" id="about">
+        <input type="text" name="about" id="about"  value="<%= venue.about %>" />
     </div>
     <div class="field">
         <label for="location"> Location </label>
-        <input type="text" name="location" id="location">
+        <input type="text" name="location" id="location"  value="<%= venue.location %>" />
     </div>
     <div class="field">
         <label for="size"> Size </label>
-        <input type="text" name="size" id="size">
+        <input type="text" name="size" id="size"  value="<%= venue.size %>" />
     </div>
     <div class="field control">
         <button class="btn submit">Submit</button>

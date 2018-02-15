@@ -11,7 +11,7 @@
       <li class="venues-list">
         <p class="item">
           <a class="name" href="/venues/<%= theVenue._id %>"><%= theVenue.name %></a>
-          <span class="owner">owned by <%= theVenue.owner %></span>
+          <span class="owner">owned by <%= theVenue.owner.username %></span>
         </p>
       </li>
     <% }); %>

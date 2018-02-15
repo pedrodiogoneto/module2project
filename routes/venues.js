@@ -5,15 +5,17 @@ const Venues = require('../models/venue');
 
 // render venues list
 router.get('/', (req, res, next) => {
-  Venues.find({'archived': false}, (err, venues) => {
-    if (err) {
-      return next(err);
-    }
-    res.render('venues/list', {
-      title: 'Venues List',
-      venues
+  Venues.find({'archived': false})
+    .populate('owner')
+    .exec((err, venues) => {
+      if (err) {
+        return next(err);
+      }
+      res.render('venues/list', {
+        title: 'Venues List',
+        venues
+      });
     });
-  });
 });
 
 /* render the create form */
@@ -39,7 +41,7 @@ router.post('/', (req, res, next) => {
       contact: null,
       description: null
     }],
-    owner: req.session.currentUser.username,
+    owner: req.session.currentUser._id,
     about: req.body.about,
     location: req.body.location,
     size: req.body.size
@@ -55,7 +57,10 @@ router.post('/', (req, res, next) => {
 
 // Render the my-venues page
 router.get('/my-venues', (req, res, next) => {
-  Venues.find({'owner': req.session.currentUser.username}, (err, venue) => {
+  if (!req.session.currentUser) {
+    return res.redirect('/auth/login');
+  }
+  Venues.find({'owner': req.session.currentUser._id}, (err, venue) => {
     if (err) {
       return next(err);
     }
@@ -63,7 +68,7 @@ router.get('/my-venues', (req, res, next) => {
       name: venue.name,
       owner: venue.owner,
       id: venue._id,
-      user: req.session.currentUser.username,
+
       about: venue.about,
       location: venue.location,
       size: venue.size,
@@ -91,23 +96,24 @@ router.post('/:id/delete-venue', (req, res, next) => {
 /* render the detail page */
 router.get('/:id', (req, res, next) => {
   const id = req.params.id;
-  Venues.findById(id, (err, venue) => {
-    if (err) {
-      return next(err);
-    }
-    if (!venue) {
-      res.status(404);
+  Venues.findById(id)
+    .populate('owner')
+    .exec((err, venue) => {
+      if (err) {
+        return next(err);
+      }
+      if (!venue) {
+        res.status(404);
+        const data = {
+          title: '404 Not Found'
+        };
+        return res.render('not-found', data);
+      }
       const data = {
-        title: '404 Not Found'
+        venue
       };
-      return res.render('not-found', data);
-    }
-    const data = {
-      user: req.session.currentUser.username,
-      venue
-    };
-    res.render('venues/venue-details', data);
-  });
+      res.render('venues/venue-details', data);
+    });
 });
 
 // Render the Edit venue form
@@ -128,13 +134,7 @@ router.get('/:id/edit-venue', (req, res, next) => {
       return res.render('not-found', data);
     }
     const data = {
-      name: venue.name,
-      owner: venue.owner,
-      user: req.session.currentUser.username,
-      id: venue._id,
-      about: venue.about,
-      location: venue.location,
-      size: venue.size
+      venue
     };
     res.render('venues/edit-venue', data);
   });

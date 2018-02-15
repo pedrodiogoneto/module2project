@@ -3,7 +3,7 @@
     <li class="venue-details">
         <p class="item">
             <%= venue.name %> by owner
-            <%= venue.owner %>
+            <%= venue.owner.username %>
             <p><%= venue.about %></p>
             <p><%= venue.location %></p> 
             <p><%= venue.size %></p>
@@ -11,7 +11,7 @@
     </li>
 </ul>
 
-<% if (venue.owner === user) { %>
+<% if (venue.owner.username === user.username) { %>
     
     <% if (venue.requests !== null) { %>
         <h2>Bands Requesting to book Your Place</h2>
