@@ -27,9 +27,11 @@
     </div>
 
     <% if (owner === user) { %>
-        <p class="">
-          <a href="/venues/<%= id %>/edit-venue"><button>Edit Venue</button></a>
-        </p>
+          <a href="/venues/<%= id %>/edit-venue">Edit Venue</a>
+          
+          <form action="/venues/<%= id %>/delete-venue" method="POST">
+                <button class="btn delete">delete</button>
+        </form>    
       <% } %>
 
     <% if (typeof message !== 'undefined') { %>

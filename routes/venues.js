@@ -66,60 +66,22 @@ router.get('/my-venues', (req, res, next) => {
     res.render('venues/my-venues', data);
   });
 });
-
-// // Render the Edit venue form
-// router.get('/' + id + '/edit-venue', (req, res, next) => {
-//   if (!req.session.currentUser) {
-//     return res.redirect('/auth/login');
-//   }
-
-//   res.render('venues/edit-venue');
-// });
-
-// // Post to the Edit form
-// router.post('/edit-venue', (req, res, next) => {
-//   if (!req.session.currentUser) {
-//     return res.redirect('/auth/login');
-//   }
-
-//   Venues.findById(idVenue, (err, venue) => {
-//     if (err) {
-//       return next(err);
-//     }
-//     if (!venue) {
-//       res.status(404);
-//       const data = {
-//         title: '404 Not Found'
-//       };
-//       return res.render('not-found', data);
-//     }
-//     const newRequest = {
-//       name: req.body.name,
-//       contact: req.body.contact,
-//       description: req.body.description
-//     };
-
-//     // validate empty request form
-//     if (newRequest.name === '' || newRequest.contact === '' || newRequest.description === '') {
-//       // const message = {
-//       //   message: 'Please fill all the fields!'
-//       // };
-//       return res.redirect('/venues/' + idVenue);
-//     }
-
-//     venue.requests.push(newRequest);
-//     venue.save((err) => {
-//       if (err) {
-//         return next(err);
-//       }
-
-//       res.redirect('/venues');
-//     });
-//   });
-// });
-
+/// /////////////////////////////////////////////
 // Post to the delete button
+router.post('/:id/delete-venue', (req, res, next) => {
+  if (!req.session.currentUser) {
+    return res.redirect('/auth/login');
+  }
+  const id = req.params.id;
 
+  Venues.remove({_id: id}, (err) => {
+    if (err) {
+      return next(err);
+    }
+    res.redirect('/venues');
+  });
+});
+/// /////////////////////////////////////////////
 /* render the detail page */
 router.get('/:id', (req, res, next) => {
   const id = req.params.id;
@@ -141,6 +103,77 @@ router.get('/:id', (req, res, next) => {
       id: venue._id
     };
     res.render('venues/venue-details', data);
+  });
+});
+
+// Render the Edit venue form
+router.get('/:id/edit-venue', (req, res, next) => {
+  if (!req.session.currentUser) {
+    return res.redirect('/auth/login');
+  }
+  const id = req.params.id;
+  Venues.findById(id, (err, venue) => {
+    if (err) {
+      return next(err);
+    }
+    if (!venue) {
+      res.status(404);
+      const data = {
+        title: '404 Not Found'
+      };
+      return res.render('not-found', data);
+    }
+    const data = {
+      name: venue.name,
+      owner: venue.owner,
+      user: req.session.currentUser.username,
+      id: venue._id
+    };
+    res.render('venues/edit-venue', data);
+  });
+});
+
+// Post to the Edit form
+router.post('/:id/edit-venue', (req, res, next) => {
+  if (!req.session.currentUser) {
+    return res.redirect('/auth/login');
+  }
+  const id = req.params.id;
+  Venues.findById(id, (err, venue) => {
+    if (err) {
+      return next(err);
+    }
+    if (!venue) {
+      res.status(404);
+      const data = {
+        title: '404 Not Found'
+      };
+      return res.render('not-found', data);
+    }
+    const editVenue = {
+      $set: {
+        name: req.body.name
+      }
+    };
+
+    // validate empty request form
+    if (editVenue.name === '') {
+      return res.redirect('/venues/' + id);
+    }
+
+    Venues.update({_id: id}, editVenue, (err, venue) => {
+      if (err) {
+        return next(err);
+      }
+      if (!venue) {
+        res.status(404);
+        const data = {
+          title: '404 Not Found'
+        };
+        return res.render('not-found', data);
+      }
+    });
+    res.redirect('/venues');
   });
 });
 
