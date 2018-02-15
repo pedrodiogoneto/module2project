@@ -3,10 +3,7 @@
             <% if (Object.keys(venue).length !== 0) { %>
                 <% venue.forEach( (venue) => { %>
         <li class="venue-details">
-            
-            <a class="name" href="/venues/<%= venue._id %>"><%= venue.name %></a>
-            
-
+            <a class="name" href="/venues/<%= venue._id %>"><%= venue.name %></a>        
         </li>
         <% }); %>
         <% } else { %>
