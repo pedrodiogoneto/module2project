@@ -13,7 +13,10 @@ const venues = [
       contact: '91876234895',
       description: 'were a band'
     }],
-    username: 'Pedro'
+    username: 'Pedro',
+    about: 'a great place, near IH',
+    location: 'really near IH',
+    size: '3000 persons'
   },
   {
     name: 'apollo',
@@ -23,7 +26,10 @@ const venues = [
       contact: '91876234895',
       description: 'were a folcloric groupº'
     }],
-    username: 'Pedro'
+    username: 'Pedro',
+    about: 'a great place, near IH',
+    location: 'really near IH',
+    size: '3000 persons'
   }
 ];
 
@@ -33,7 +39,7 @@ let promises = venues.map(venue => {
       if (!user) {
         throw new Error(`User "${venue.owner}" was not found!`);
       }
-      venue.owner = user.username;
+      venue.owner = user._id;
     });
 });
 

@@ -1,12 +1,232 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+/* -- reset -- */
+
+html {
+  box-sizing: border-box; 
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+p {
+  margin: 0;
 }
 
 a {
-  color: #00B7FF;
+  color: rgb(40, 61, 156);
 }
 
-.venues-list {
-  list-style-type: none;
+/* -- layout -- */
+
+#site-header {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+#site-header .container {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+#site-main {
+  padding-top: 5vh;
+  min-height: 60vh;
+}
+
+#site-main .container {
+  margin-bottom: 10vh;
+}
+
+#site-footer {
+  padding: 5vh 0;
+  background: #111;
+  color: white;
+}
+
+/* -- typography -- */
+
+h1 {
+  font-size: 2.5em;
+}
+
+/* -- form -- */
+
+
+.field {
+  margin-bottom: 20px;
+}
+
+.field label {
+  display: block;
+  font-size: 16px;
+  padding-bottom: 10px;
+}
+
+.field input {
+  width: 100%;
+  max-width: 600px;
+  padding: 5px 10px;
+  font-size: 16px;
+  border: 1px solid black;
+}
+
+.field.control {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* -- components -- */
+
+.menu-top {
+  display: flex;
+}
+
+.menu-top a,
+.menu-top .username,
+.menu-top button {
+  display: inline-block;
+  padding: 5px 5px;
+  margin-right: 10px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.menu-top button:hover {
+  text-decoration: underline;
+}
+
+.menu-top .username {
+  color: #ccc;
+  font-weight: 300;
+  font-style: italic;
+}
+
+.menu-top,
+.menu-top a,
+.menu-top button {
+  color: white;
+}
+
+.menu-top .username label {
+  display: none;
+}
+
+.button-general {
+  margin: 1vw;
+}
+
+.logo {
+  color: white;
+}
+
+.logo:hover {
+  color: white;
+}
+
+/* -- pages -- */
+
+.signup-login {
+  padding: 1vw;
+  font-size: 1.25em;
+}
+
+.logo-top {
+  font-size: 1.5em;
+  text-align: center;
+  border-bottom: 1px solid black;
+} 
+
+.main-info {
+  padding: 4vw;
+  margin: 10vh auto;
+  text-align: center;
+  background: rgba(128, 128, 128, 0.603);
+}
+
+.background-image {
+  background-image: url("./images/background.jpg");
+}
+
+.main-list {
+  padding: 1vw;
+  margin: 1vh auto;
+  text-align: center;
+  background: rgba(128, 128, 128, 0.603);
+
+}
+
+.center {
+  text-align: center;
+}
+
+.title {
+  margin-bottom: 3vh;
+}
+
+.item {
+  margin: 0;
+
+}
+
+.adjust {
+  padding: 0;
+  margin-right: 2vw;
+  margin-bottom: 2vh;
+}
+
+
+/*content styling*/
+
+h2 {
+    font-size: 2.5em;
+    white-space: nowrap;
+    margin: 0 70vw 0 0; 
+}
+
+
+#create-venue-button {
+  margin-bottom: 2vh;
+}
+
+.interactive-list #create-venue-button {
+  align-items: flex-end;
+}
+
+.name{
+  font-size: 1.25em
+}
+
+
+
+/* >1024PX SCREEN SIZE FORMATTING*/
+
+@media screen and (min-width: 1024px) {
+
+  #site-main .container {
+    height: 75vh;
+  }
+
+  .container {
+
+  }
+
+  /*content styling*/
+
+  .main-list p {
+    text-align: left;
+  }
+
+  .name{
+    font-size: 1.25em
+  }
+
+  .menu-top .username label {
+    display: inline;
+  }
 }

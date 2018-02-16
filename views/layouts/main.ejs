@@ -1,34 +1,42 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <title>Module2Project</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel='stylesheet' href='/stylesheets/style.css'/>
-</head> 
-  <body>
-    <header id="site-header">
-      <div class="container">
-        <h1>Module2Project</h1>
+  <head>
+    <title>Module2Project</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="/stylesheets/style.css"/>
+  </head> 
+
+  <body class"background-image">
+    <div class="bg-dark">
+      <div class="bg-primary logo-top">
+        <a href="/" class="logo">VENUES2BANDS</a>        
+      </div>
+      <div class="container menu-top">
+        <!--<h2>Module2Project</h2>-->
         <% if (user) { %>
-            <!-- Logged in as <%= user.username %> -->
-            <form method="post" action="/auth/logout">
-              <button>Logout</button>
-            </form>
-            <a href="/venues/"><button>Venues List</button></a>
-          <% } else { %>
+          <a href="/venues/">Venues List</a>
+          <a href="/venues/my-venues">My Venues</a>
+          <span class="username"><label>logged in as </label><%= user.username %></span>
+          <form method="post" action="/auth/logout">
+            <button>Logout</button>
+          </form>
+        <% } else { %>
           <a href="/auth/signup">Signup</a>
           <a href="/auth/login">Login</a>
         <% } %>
       </div>
-    </header>
-    <div id="site-main" class="container">
-      <%- body %>
+    </div>
+    <div id="site-main">
+      <div class="container">  
+        <%- body %>
+      </div>
     </div>
     <footer id="site-footer">
       <div class="container">
         <p>&copy; Fucking Module2Project -- 2018 Ironhack</p>
       </div>
     </footer>
-  </body>
+  </body>   
 </html>

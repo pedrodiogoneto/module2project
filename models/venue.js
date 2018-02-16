@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-// const ObjectId = Schema.Types.ObjectId;
-const StringSchema = Schema.Types.String;
+const ObjectId = Schema.Types.ObjectId;
+// const StringSchema = ;
 
 const VenueSchema = Schema({
   name: String,
@@ -12,9 +12,12 @@ const VenueSchema = Schema({
     description: String
   }],
   owner: {
-    type: StringSchema,
+    type: ObjectId,
     ref: 'User'
-  }
+  },
+  about: String,
+  location: String,
+  size: String
 });
 
 const Venue = mongoose.model('Venue', VenueSchema);

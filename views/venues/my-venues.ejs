@@ -1,28 +1,18 @@
-<h2>Venue Details</h2>
+<h2 class="title">My Venues</h2>
 
-<% if (Venue.owner._id === User._id) { %>
-    <% venues.forEach( (theVenue) => { %>
+<a href="/venues/new-venue"><button id = "create-venue-button" class="btn btn-dark">Create new</button></a>
+
 <ul>
-    <li class="venue-details">
-        <p class="item">
-            <%= name %>
-        </p>
-
-        <form action="">
-            <div class="field control">
-                <button class="btn edit">edit</button>
-            </div>
-        </form>
-
-        <form action="">
-            <div class="field control">
-                <button class="btn delete">delete</button>
-            </div>
-        </form>    
-    </li>
+    <% if (Object.keys(venues).length !== 0) { %>
+        <% venues.forEach( (venue) => { %>
+            <div class="main-list">
+            <li class="venue-details venues-list">
+                <a class="name" href="/venues/<%= venue._id %>"><%= venue.name %></a>        
+            </li>
+        </div>
+        <% }); %>
+    <% } else { %>
+        <p>You haven't yet created a venue</p>
+    <% }%>
 </ul>
 
-    <% } %>
-<% } else { %> 
-    <p>Please try again later, there are no available venues</p> 
-<% } %>

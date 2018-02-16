@@ -1,31 +1,65 @@
-<h2>Venue Details</h2>
+<h2 class="title">Venue Details</h2>
 <ul>
-    <li class="venue-details">
+    <li class="venue-details venues-list">
+        <div class="main-list">
         <p class="item">
-            <%= name %>
-            <%= owner %>
+            <h3><%= venue.name %></h3>
+            <p>Owner: <%= venue.owner.username %></p>
+            <p>About: <%= venue.about %></p>
+            <p>Location: <%= venue.location %></p> 
+            <p>Size: <%= venue.size %></p>
         </p>
+    </div>
     </li>
 </ul>
 
-<h2>Request Booking</h2>
+<% if (user && venue.owner.username === user.username) { %>
+    
+    <% if (venue.requests !== null) { %>
+        <h2 class="title">Band's Requests</h2>
+        <% venue.requests.forEach( (request) => { %>
+            <div class="main-list">
+            <h3><%= request.name %></h3>
+            <p>Contact: <%= request.contact %></p>
+            <p>Description: <%= request.description %></p>
+        </div>
+        <% }) %>
+    <% } %>
 
-<form action= "/venues/<%= id %>" method="POST" >
+    <a class="adjust" href="/venues/<%= venue.id %>/edit-venue">Edit Venue</a>
+    <form action="/venues/<%= venue.id %>/delete-venue" method="POST">
+        <button class="btn btn-dark">delete</button>
+    </form>    
+<% } %>  
+
+<% if (!user) { %>
+
+<h2 class="title">Request Booking</h2>
+
+<form action= "/venues/<%= venue.id %>" method="POST" >
     <div class="field">
-      <label for="name"> Name </label>
-      <input type="text" name="name" id="name">
+        <label for="name"> Name </label>
+        <input type="text" name="name" id="name">
+    </div>
 
-      <label for="contact"> Contact </label>
-      <input type="text" name="contact" id="contact">
-
-      <label for="description"> Description </label>
-      <input type="text" name="description" id="description">
+    <div class="field">
+        <label for="contact"> Contact </label>
+        <input type="text" name="contact" id="contact">
+    </div>
+    
+    <div class="field">
+        <label for="description"> Description </label>
+        <input type="text" name="description" id="description">
     </div>
 
     <div class="field control">
-        <button class="btn submit">Submit</button>
+        <button class="btn btn-dark">Submit</button>
     </div>
+    
     <% if (typeof message !== 'undefined') { %>
         <p class="error"><%= message %></p>
-      <% } %>
+    <% } %>
 </form>
+<% } %>
+
+
