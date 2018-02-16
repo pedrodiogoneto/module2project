@@ -1,22 +1,25 @@
-<h2><%= title %></h2>
+<h2 class="title"><%= title %></h2>
 
 <div class = "interactive-list">
 <% if (user) { %>
-    <a href="/venues/new-venue"><button id = "create-venue-button">Create new</button></a>
+    <a href="/venues/new-venue"><button id = "create-venue-button" class="btn btn-dark">Create new</button></a>
 <% } %>
 
-<ul>
-  <% if (Object.keys(venues).length !== 0) { %>
+<% if (Object.keys(venues).length !== 0) { %>
+  <ul>
     <% venues.forEach( (theVenue) => { %>
-      <li class="venues-list">
-        <p class="item">
-          <a class="name" href="/venues/<%= theVenue._id %>"><%= theVenue.name %></a>
-          <span class="owner">owned by <%= theVenue.owner.username %></span>
-        </p>
+      <li class="main-list">
+        <div>
+          <p class="item">
+            <a class="name" href="/venues/<%= theVenue._id %>"><%= theVenue.name %></a>
+            <span class="owner">owned by <%= theVenue.owner.username %></span>
+          </p>
+        </div>
       </li>
     <% }); %>
-  <% } else { %>
-    <p>Please try again later, there are no available venues</p>
-  <% }%>
-</ul>
+  </ul>
+<% } else { %>
+  <p>Please try again later, there are no available venues</p>
+<% }%>
+
 </div>

@@ -1,36 +1,40 @@
-<h2>Venue Details</h2>
+<h2 class="title">Venue Details</h2>
 <ul>
-    <li class="venue-details">
+    <li class="venue-details venues-list">
+        <div class="main-list">
         <p class="item">
-            <%= venue.name %> by owner
-            <%= venue.owner.username %>
-            <p><%= venue.about %></p>
-            <p><%= venue.location %></p> 
-            <p><%= venue.size %></p>
+            <h3><%= venue.name %></h3>
+            <p>Owner: <%= venue.owner.username %></p>
+            <p>About: <%= venue.about %></p>
+            <p>Location: <%= venue.location %></p> 
+            <p>Size: <%= venue.size %></p>
         </p>
+    </div>
     </li>
 </ul>
 
 <% if (user && venue.owner.username === user.username) { %>
     
     <% if (venue.requests !== null) { %>
-        <h2>Bands Requesting to book Your Place</h2>
+        <h2 class="title">Band's Requests</h2>
         <% venue.requests.forEach( (request) => { %>
+            <div class="main-list">
             <h3><%= request.name %></h3>
             <p>Contact: <%= request.contact %></p>
             <p>Description: <%= request.description %></p>
+        </div>
         <% }) %>
     <% } %>
 
-    <a class="btn" href="/venues/<%= venue.id %>/edit-venue">Edit Venue</a>
+    <a class="adjust" href="/venues/<%= venue.id %>/edit-venue">Edit Venue</a>
     <form action="/venues/<%= venue.id %>/delete-venue" method="POST">
-        <button class="btn delete">delete</button>
+        <button class="btn btn-dark">delete</button>
     </form>    
 <% } %>  
 
 <% if (!user) { %>
 
-<h2>Request Booking</h2>
+<h2 class="title">Request Booking</h2>
 
 <form action= "/venues/<%= venue.id %>" method="POST" >
     <div class="field">
@@ -49,7 +53,7 @@
     </div>
 
     <div class="field control">
-        <button class="btn submit">Submit</button>
+        <button class="btn btn-dark">Submit</button>
     </div>
     
     <% if (typeof message !== 'undefined') { %>

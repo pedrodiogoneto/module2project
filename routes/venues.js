@@ -18,7 +18,7 @@ router.get('/', (req, res, next) => {
     });
 });
 
-/* render the create form */
+// render the create form
 router.get('/new-venue', (req, res, next) => {
   if (!req.session.currentUser) {
     return res.redirect('/auth/login');
@@ -28,7 +28,7 @@ router.get('/new-venue', (req, res, next) => {
   });
 });
 
-/* handle the POST from the create form */
+// handle the POST from the create form
 router.post('/', (req, res, next) => {
   if (!req.session.currentUser) {
     return res.redirect('/auth/login');
@@ -46,7 +46,7 @@ router.post('/', (req, res, next) => {
     if (err) {
       return next(err);
     }
-    res.redirect('/venues/');
+    res.redirect('/venues/my-venues');
   });
 });
 
@@ -65,7 +65,7 @@ router.get('/my-venues', (req, res, next) => {
     res.render('venues/my-venues', data);
   });
 });
-/// /////////////////////////////////////////////
+
 // Post to the delete button
 router.post('/:id/delete-venue', (req, res, next) => {
   if (!req.session.currentUser) {
@@ -80,8 +80,8 @@ router.post('/:id/delete-venue', (req, res, next) => {
     res.redirect('/venues');
   });
 });
-/// /////////////////////////////////////////////
-/* render the detail page */
+
+// render the detail page
 router.get('/:id', (req, res, next) => {
   const id = req.params.id;
   Venues.findById(id)
@@ -203,9 +203,6 @@ router.post('/:id', (req, res, next) => {
 
     // validate empty request form
     if (newRequest.name === '' || newRequest.contact === '' || newRequest.description === '') {
-      // const message = {
-      //   message: 'Please fill all the fields!'
-      // };
       return res.redirect('/venues/' + idVenue);
     }
 

@@ -1,13 +1,15 @@
-<h2>My Venues</h2>
+<h2 class="title">My Venues</h2>
 
-<a href="/venues/new-venue"><button id = "create-venue-button">Create new</button></a>
+<a href="/venues/new-venue"><button id = "create-venue-button" class="btn btn-dark">Create new</button></a>
 
 <ul>
     <% if (Object.keys(venues).length !== 0) { %>
         <% venues.forEach( (venue) => { %>
-            <li class="venue-details">
+            <div class="main-list">
+            <li class="venue-details venues-list">
                 <a class="name" href="/venues/<%= venue._id %>"><%= venue.name %></a>        
             </li>
+        </div>
         <% }); %>
     <% } else { %>
         <p>You haven't yet created a venue</p>

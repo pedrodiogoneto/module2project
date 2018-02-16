@@ -1,4 +1,4 @@
-<h2>Sign up</h2>
+<h2 class="title">Sign Up</h2>
 
 <form action="/auth/signup" method="POST" >
   <div class="field">
@@ -7,12 +7,12 @@
   </div>
 
   <div class="field">
-      <label for="password"> password </label>
-      <input type="password" name="password" id="password">
+    <label for="password"> Password </label>
+    <input type="password" name="password" id="password">
   </div>
 
   <div class="field control">
-    <button class="btn submit">Sign up</button>
+    <button class="btn">Sign up</button>
     <% if (typeof message !== 'undefined') { %>
       <p class="error"><%= message %></p>
     <% } %>
